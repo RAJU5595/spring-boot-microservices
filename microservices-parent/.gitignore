@@ -1,4 +1,3 @@
-/inventory-service/target/**
-/product-service/target/**
-/order-service/target/**
- 
+/inventory-service/target/
+/product-service/target/
+/order-service/target/
