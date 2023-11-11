@@ -1,5 +1,6 @@
 package com.programmingtechie.orderservice.config;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -8,8 +9,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
 
     @Bean(name = "inventoryClient")
-    public WebClient getWebClient(){
-        return WebClient.builder().build();
+    @LoadBalanced
+    public WebClient.Builder getWebClient(){
+        return WebClient.builder();
     }
 
 }
