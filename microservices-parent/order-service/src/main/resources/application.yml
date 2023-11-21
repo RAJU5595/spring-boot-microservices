@@ -11,6 +11,17 @@ spring:
     hibernate:
       ddl-auto: update
 
+  kafka:
+    bootstrap:
+      servers: localhost:9092
+    template:
+      default-topic: notificationTopic
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: event:com.programmingtechie.orderservice.event.OrderPlacedEvent
+
 server:
   port: 8081
 
@@ -30,7 +41,9 @@ management:
   endpoint:
     health:
       show-details: always
-
+  tracing:
+    sampling:
+      probability: 1.0
 
 resilience4j:
   circuitbreaker:
@@ -53,3 +66,4 @@ resilience4j:
       inventory:
         max-attempts: 3
         wait-duration: 5s
+
